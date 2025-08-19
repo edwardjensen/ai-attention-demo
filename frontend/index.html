@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Attention Mechanism Demo</title>
+    <meta name="description" content="Interactive demonstration of attention mechanisms in AI language models">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-start justify-between">
+                <!-- Left aligned text content -->
+                <div class="flex-1">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                        AI Attention Mechanism Demo
+                    </h1>
+                    <p class="text-lg text-gray-600 max-w-3xl">
+                        Explore how AI language models use attention to understand relationships between words. 
+                        This visualization shows how DistilBERT focuses on different parts of your text.
+                    </p>
+                </div>
+                
+                <!-- Right aligned logo -->
+                <div class="flex-shrink-0 ml-6">
+                    <img 
+                        src="ai-confidence-demo-logo-v2.png" 
+                        alt="AI Demo Series Logo" 
+                        class="h-16 w-auto"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Input Section -->
+        <section class="mb-8">
+            <div class="bg-white rounded-lg shadow-sm border p-6">
+                <label for="text-input" class="block text-sm font-medium text-gray-700 mb-2">
+                    Enter text to analyze (max 1000 characters):
+                </label>
+                <textarea
+                    id="text-input"
+                    class="w-full h-32 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                    placeholder="Type your text here... For example: 'The cat sat on the mat because it was comfortable.'"
+                    maxlength="1000"
+                    aria-describedby="char-count processing-status"
+                ></textarea>
+                <div class="flex justify-between items-center mt-2">
+                    <span id="char-count" class="text-sm text-gray-500">0 / 1000 characters</span>
+                    <div id="processing-status" class="text-sm" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualization Section -->
+        <section id="visualization-section" class="hidden">
+            <div class="bg-white rounded-lg shadow-sm border p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Attention Visualization</h2>
+                    <div id="progress-indicator" class="flex items-center space-x-2">
+                        <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                        <span class="text-sm text-gray-600">Processing...</span>
+                    </div>
+                </div>
+
+                <!-- Tokens Display -->
+                <div id="tokens-container" class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-800 mb-3">Tokenization</h3>
+                    <div id="tokens-display" class="flex flex-wrap gap-2" role="list">
+                        <!-- Tokens will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Attention Visualization -->
+                <div id="attention-container">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-lg font-medium text-gray-800">Attention Patterns</h3>
+                        <div id="layer-info" class="text-sm text-gray-600"></div>
+                    </div>
+                    <div id="attention-viz" class="w-full h-96 border border-gray-200 rounded-lg">
+                        <!-- D3.js visualization will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Attention Relationships -->
+                <div id="relationships-container" class="hidden mt-6">
+                    <h3 class="text-lg font-medium text-gray-800 mb-3">Strongest Attention Relationships</h3>
+                    <div id="relationships-list" class="space-y-2">
+                        <!-- Relationships will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section class="mt-8">
+            <div class="bg-blue-50 rounded-lg border border-blue-200 p-6">
+                <h2 class="text-lg font-semibold text-blue-900 mb-3">How This Works</h2>
+                <div class="prose text-blue-800">
+                    <p class="mb-3">
+                        This demonstration uses DistilBERT, a lightweight transformer model, to show how attention mechanisms work:
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 mb-3">
+                        <li><strong>Tokenization:</strong> Your text is broken into tokens (words or parts of words)</li>
+                        <li><strong>Layer Processing:</strong> Each layer learns different patterns and relationships</li>
+                        <li><strong>Attention Weights:</strong> Numbers showing how much each token "pays attention" to others</li>
+                        <li><strong>Pattern Recognition:</strong> The model identifies meaningful connections between words</li>
+                    </ul>
+                    <p class="text-sm">
+                        Watch how connections emerge and evolve through the layers - this is how AI understands context and meaning!
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-sm text-gray-500">
+                <p>AI Attention Mechanism Demo - Part of the AI Inference Suite</p>
+                <p class="mt-1">Built with DistilBERT, Flask, and D3.js</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="attention.js"></script>
+</body>
+</html>

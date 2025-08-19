@@ -1,0 +1,305 @@
+/* Custom styles for AI Attention Demo */
+
+/* Header logo styling */
+.header-logo {
+    transition: opacity 0.3s ease;
+}
+
+.header-logo:hover {
+    opacity: 0.8;
+}
+
+/* Token styling */
+.token {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    margin: 0.125rem;
+    background-color: #e5e7eb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.token.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #2563eb;
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.token.source {
+    background-color: #ef4444;
+    color: white;
+    border-color: #dc2626;
+}
+
+.token.target {
+    background-color: #10b981;
+    color: white;
+    border-color: #059669;
+}
+
+/* Attention visualization */
+.attention-line {
+    stroke-width: 2;
+    fill: none;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.attention-line.strong {
+    stroke-width: 4;
+    opacity: 0.9;
+}
+
+.attention-line.medium {
+    stroke-width: 3;
+    opacity: 0.8;
+}
+
+.attention-line.weak {
+    stroke-width: 1;
+    opacity: 0.5;
+}
+
+/* Token circles in visualization */
+.token-circle {
+    fill: #3b82f6;
+    stroke: #1d4ed8;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.token-circle:hover {
+    fill: #1d4ed8;
+    r: 8;
+}
+
+.token-circle.highlighted {
+    fill: #ef4444;
+    stroke: #dc2626;
+    r: 8;
+}
+
+/* Token labels in visualization */
+.token-label {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 12px;
+    fill: #374151;
+    text-anchor: middle;
+    pointer-events: none;
+    user-select: none;
+}
+
+.token-label.highlighted {
+    fill: #1f2937;
+    font-weight: bold;
+}
+
+/* Relationship items */
+.relationship-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.relationship-item:hover {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.relationship-strength {
+    width: 60px;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 0.75rem;
+}
+
+.relationship-strength-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #3b82f6, #ef4444);
+    transition: width 0.5s ease;
+}
+
+.relationship-tokens {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+}
+
+.relationship-arrow {
+    margin: 0 0.5rem;
+    color: #6b7280;
+}
+
+/* Processing states */
+.processing {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Attention strength colors */
+.attention-strength-1 { stroke: #fef3c7; }
+.attention-strength-2 { stroke: #fcd34d; }
+.attention-strength-3 { stroke: #f59e0b; }
+.attention-strength-4 { stroke: #d97706; }
+.attention-strength-5 { stroke: #b45309; }
+.attention-strength-6 { stroke: #92400e; }
+.attention-strength-7 { stroke: #78350f; }
+.attention-strength-8 { stroke: #451a03; }
+
+/* Layer progress indicator */
+.layer-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.layer-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.layer-dot.active {
+    background-color: #3b82f6;
+    transform: scale(1.2);
+}
+
+.layer-dot.completed {
+    background-color: #10b981;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Header adjustments for mobile */
+    .max-w-7xl .flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .max-w-7xl .flex .ml-6 {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+    
+    .token {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .token-label {
+        font-size: 10px;
+    }
+    
+    #attention-viz {
+        height: 300px;
+    }
+    
+    .relationship-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .relationship-strength {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .token,
+    .attention-line,
+    .token-circle,
+    .relationship-item,
+    .relationship-strength-bar {
+        transition: none;
+    }
+    
+    .fade-in,
+    .slide-in {
+        animation: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .token {
+        border-width: 2px;
+    }
+    
+    .attention-line {
+        stroke-width: 3;
+    }
+    
+    .token-circle {
+        stroke-width: 3;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+.token:focus,
+.token-circle:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Loading states */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
