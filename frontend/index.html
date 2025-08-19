@@ -6,6 +6,10 @@
     <title>AI Attention Mechanism Demo</title>
     <meta name="description" content="Interactive demonstration of attention mechanisms in AI language models">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="ai-confidence-demo-logo-solid-bg.png">
+    <link rel="apple-touch-icon" href="ai-confidence-demo-logo-solid-bg.png">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -86,14 +90,58 @@
                 </div>
 
                 <!-- Attention Visualization -->
-                <div id="attention-container">
-                    <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-lg font-medium text-gray-800">Attention Patterns</h3>
-                        <div id="layer-info" class="text-sm text-gray-600"></div>
+                                <!-- Attention Visualization -->
+                <div id="visualization-container" class="bg-gray-50 border border-gray-200 rounded-lg shadow-inner h-[650px] overflow-visible relative">
+                    <!-- Visualization Legend -->
+                    <div id="visualization-legend" class="absolute top-4 right-4 bg-white rounded-lg shadow-md border p-4 text-sm z-10 max-w-xs">
+                        <h4 class="font-semibold text-gray-800 mb-3 text-center">Visualization Key</h4>
+                        
+                        <!-- Node Colors -->
+                        <div class="mb-3">
+                            <div class="font-medium text-gray-700 mb-2">Token States:</div>
+                            <div class="flex items-center mb-1">
+                                <div class="w-4 h-4 rounded-full mr-2" style="background-color: #2563eb;"></div>
+                                <span class="text-gray-600">Normal Word</span>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                <div class="w-4 h-4 rounded-full mr-2" style="background-color: #f59e0b;"></div>
+                                <span class="text-gray-600">Source Token</span>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                <div class="w-4 h-4 rounded-full mr-2" style="background-color: #10b981;"></div>
+                                <span class="text-gray-600">Target Token</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full mr-2" style="background-color: #ef4444;"></div>
+                                <span class="text-gray-600">Highlighted</span>
+                            </div>
+                        </div>
+
+                        <!-- Connection Lines -->
+                        <div class="mb-3">
+                            <div class="font-medium text-gray-700 mb-2">Attention Strength:</div>
+                            <div class="flex items-center mb-1">
+                                <div class="w-6 h-1 mr-2 rounded" style="background: linear-gradient(to right, #440154, #31688e);"></div>
+                                <span class="text-gray-600">Weak (3-20%)</span>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                <div class="w-6 h-1 mr-2 rounded" style="background: linear-gradient(to right, #31688e, #fde725);"></div>
+                                <span class="text-gray-600">Medium (20-50%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-6 h-1 mr-2 rounded" style="background: #fde725;"></div>
+                                <span class="text-gray-600">Strong (50%+)</span>
+                            </div>
+                        </div>
+
+                        <!-- Interaction Guide -->
+                        <div class="text-xs text-gray-500 border-t pt-2">
+                            <div class="mb-1">💡 <strong>Tip:</strong> Hover over tokens or lines to explore connections</div>
+                            <div>🎯 Click tokens to focus on their relationships</div>
+                        </div>
                     </div>
-                    <div id="attention-viz" class="w-full h-96 border border-gray-200 rounded-lg">
-                        <!-- D3.js visualization will be rendered here -->
-                    </div>
+                    
+                    <svg id="attention-svg" class="w-full h-full"></svg>
                 </div>
 
                 <!-- Attention Relationships -->
